@@ -1,0 +1,108 @@
+@mixin fields {
+  padding: 10px;
+  input {
+    padding: 5px 10px;
+    margin: 0 10px;
+    border-radius: 5px;
+  }
+}
+* {
+  font-size: large;
+}
+body {
+  margin: 0;
+}
+button {
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+.pay-divider {
+  .people-pay {
+    display: flex;
+    .person {
+      @include fields;
+      display: inline-flex;
+      width: 100%;
+      label,
+      .percentage {
+        align-self: center;
+      }
+    }
+  }
+  .total-income {
+    padding: 10px;
+  }
+}
+
+.costs-list {
+  .cost-wrapper {
+    padding: 10px;
+    .cost {
+      display: inline-grid;
+      grid-template-columns: 100px 150px 100px;
+      label,
+      input,
+      button {
+        @include fields;
+      }
+      .file-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        overflow: auto;
+        .file-modal-dismiss {
+          z-index: 10;
+          color: white;
+          align-self: start;
+          padding: 10px;
+        }
+        .file-reader-app {
+          z-index: 10;
+          height: inherit;
+        }
+        #upload-button {
+          text-align: center;
+          display: flex;
+          margin: 15px auto;
+        }
+      }
+    }
+  }
+}
+
+.calculations {
+  @include fields;
+}
+.costs-modal-wrapper {
+  .costs-modal-btn {
+    margin: 0 10px;
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    .model-content {
+      .modal-dissmis-btn {
+        display: flex;
+        position: absolute;
+        padding: 10px;
+      }
+      table {
+        background: white;
+        display: block;
+        padding: 50px;
+      }
+    }
+  }
+}
