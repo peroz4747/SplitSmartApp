@@ -49,11 +49,21 @@ const splitSmartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loadUsers.fulfilled, (state, action) => {
-      const totalIncome = action.payload.reduce((total, user) => total + user.income, 0);
-      state.users = action.payload.map(user => ({
-        ...user,
-        percentage: totalIncome > 0 ? (user.income / totalIncome) * 100 : 0,
-      }));
+      if (action.payload.length === 0) {
+        state.users = [{
+          id: Date.now(),
+          name: '',
+          favColor: '#000000',
+          income: 0,
+          percentage: 0
+        }];
+      } else {
+        const totalIncome = action.payload.reduce((total, user) => total + user.income, 0);
+        state.users = action.payload.map(user => ({
+          ...user,
+          percentage: totalIncome > 0 ? (user.income / totalIncome) * 100 : 0,
+        }));
+      }
     });
     builder.addCase(saveUser.fulfilled, (state, action) => {
       const index = state.users.findIndex(user => user.id === action.payload.id);
@@ -72,7 +82,16 @@ const splitSmartSlice = createSlice({
       state.users = state.users.filter(user => user.id !== action.payload);
     });
     builder.addCase(loadCosts.fulfilled, (state, action) => {
-      state.costs = action.payload;
+      console.log(action.payload)
+      if (action.payload.length === 0) {
+        state.costs = [{
+          id: Date.now(),
+          name: '',
+          amount: 0,
+        }];
+      } else {
+        state.costs = action.payload;
+      }
     });
     builder.addCase(saveAllCosts.fulfilled, (state, action) => {
       state.costs = action.payload;

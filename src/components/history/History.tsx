@@ -121,7 +121,7 @@ const History: React.FC = () => {
     datasets: [
       ...(Object.keys(cumulativeBalances).map((key, i) => {
         const user = storedUsers.find(usr => usr.id === parseInt(key));
-        const label = user ? `${user.name}` : `User ${key}`;
+        const label = user ? `${user.name} Culmulative Balance` : `User ${key} Culmulative Balance`;
         return {
           type: 'line' as const,
           label,
@@ -134,7 +134,7 @@ const History: React.FC = () => {
       })),
       ...(Object.keys(userBalances).map((key, i) => {
         const user = storedUsers.find(usr => usr.id === parseInt(key));
-        const label = user ? user.name : `User ${key}`;
+        const label = user ? `${user.name} Balance` : `User ${key} Balance`;
         return {
           type: 'bar' as const,
           label,
